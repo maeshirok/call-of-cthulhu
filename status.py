@@ -18,14 +18,26 @@ class Character:
         self.luc = self.pow * 5
         self.dmg_bonus = self.str + self.siz
         self.hp = math.ceil((self.con + self.siz)/2)
-        self.san = self.pow * 5
         self.mp = self.pow
+        self.san = self.pow * 5
+        
+    def dice(self, die, sided):
+        return die * random.randrange(1, sided)
+    
+    def damage_bonus(self):
+        if 2 <= self.dmg_bonus <= 12:
+            return -self.dice(1, 6)
+        elif 13 <= self.dmg_bonus <= 16:
+            return -self.dice(1, 4)
+        elif 17 <= self.dmg_bonus <= 24:
+            return 0
+        elif 25 <= self.dmg_bonus <= 32:
+            return self.dice(1, 4)
+        elif 33 <= self.dmg_bonus <= 40:
+            return self.dice(1, 6)
         
     def is_dead(self):
         return self.con <= 0
-    
-    def dice(self, die, sided):
-        return die * random.randrange(1, sided)
     
     def attack(self, defender, enemy_name):
         pass
