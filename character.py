@@ -24,17 +24,29 @@ class Character:
     def dice(self, die, sided):
         return die * random.randrange(1, sided)
     
-    def damage_bonus(self):
-        if 2 <= self.dmg_bonus <= 12:
+    def damage_bonus(self,dmg_bonus):
+        if 2 <= dmg_bonus <= 12:
             return -self.dice(1, 6)
-        elif 13 <= self.dmg_bonus <= 16:
+        elif 13 <= dmg_bonus <= 16:
             return -self.dice(1, 4)
-        elif 17 <= self.dmg_bonus <= 24:
+        elif 17 <= dmg_bonus <= 24:
             return 0
-        elif 25 <= self.dmg_bonus <= 32:
+        elif 25 <= dmg_bonus <= 32:
             return self.dice(1, 4)
-        elif 33 <= self.dmg_bonus <= 40:
+        elif 33 <= dmg_bonus <= 40:
             return self.dice(1, 6)
+        
+    def damage_bonus_text(self, dmg_bonus):
+        if 2 <= dmg_bonus <= 12:
+            return '-1D6'
+        elif 13 <= dmg_bonus <= 16:
+            return '-1D4'
+        elif 17 <= dmg_bonus <= 24:
+            return 'なし'
+        elif 25 <= dmg_bonus <= 32:
+            return '1D4'
+        elif 33 <= dmg_bonus <= 40:
+            return '1D6'
         
     def is_dead(self):
         return self.con <= 0
