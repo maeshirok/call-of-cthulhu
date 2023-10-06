@@ -22,7 +22,10 @@ class Character:
         self.san = self.pow * 5
         
     def dice(self, die, sided):
-        return die * random.randrange(1, sided)
+        ability_value = 0
+        for i in range(die): 
+            ability_value += random.randint(1, sided)
+        return ability_value
     
     def damage_bonus(self,dmg_bonus):
         if 2 <= dmg_bonus <= 12:
@@ -42,7 +45,7 @@ class Character:
         elif 13 <= dmg_bonus <= 16:
             return '-1D4'
         elif 17 <= dmg_bonus <= 24:
-            return 'なし'
+            return 'none'
         elif 25 <= dmg_bonus <= 32:
             return '1D4'
         elif 33 <= dmg_bonus <= 40:
