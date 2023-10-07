@@ -6,28 +6,32 @@ import math
 
 class Character:
     def __init__(self, name):
+        '''各種ステータスの値を計算し決定する'''
         self.name = name
-        self.str = self.dice(3,6)
-        self.con = self.dice(3,6)
-        self.siz = self.dice(3,6)
-        self.dex = self.dice(3,6)
-        self.app = self.dice(3,6)
-        self.int = self.dice(3,6)
-        self.pow = self.dice(3,6)
-        self.edu = self.dice(3,6)
+        self.str = self.dice(3, 6)
+        self.con = self.dice(3, 6)
+        self.siz = self.dice(2, 6) + 6
+        self.dex = self.dice(3, 6)
+        self.app = self.dice(3, 6)
+        self.int = self.dice(2, 6) + 6
+        self.pow = self.dice(3, 6)
+        self.edu = self.dice(3, 6) + 3
         self.luc = self.pow * 5
         self.dmg_bonus = self.str + self.siz
         self.hp = math.ceil((self.con + self.siz)/2)
         self.mp = self.pow
         self.san = self.pow * 5
+        self.armor = 0
         
     def dice(self, die, sided):
-        ability_value = 0
+        '''nDnのダイスを振る'''
+        ability_point = 0
         for i in range(die): 
-            ability_value += random.randint(1, sided)
-        return ability_value
+            ability_point += random.randint(1, sided)
+        return ability_point
     
     def damage_bonus(self,dmg_bonus):
+        '''ダメージボーナスの値を計算'''
         if 2 <= dmg_bonus <= 12:
             return -self.dice(1, 6)
         elif 13 <= dmg_bonus <= 16:
@@ -40,6 +44,7 @@ class Character:
             return self.dice(1, 6)
         
     def damage_bonus_text(self, dmg_bonus):
+        '''ダメージボーナスをステータスに表記するようのテキスト'''
         if 2 <= dmg_bonus <= 12:
             return '-1D6'
         elif 13 <= dmg_bonus <= 16:
@@ -59,7 +64,3 @@ class Character:
 
     def defend(self, damage, enemy_name):
         pass
-
-ENEMY = [
-    Character('敵A'),
-]
