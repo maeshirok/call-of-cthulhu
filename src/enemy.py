@@ -68,5 +68,7 @@ class Enemy(character.Character):
 
 ENEMY = [
     #name, str, con, siz, dex, app, int, pow, edu, armor
-    Enemy('zonbie', Enemy.dice(2, 6) + 6, Enemy.dice(2, 6) + 6, Enemy.dice(2, 6) + 6, Enemy.dice(2, 6), 1, 1, 1, 1, 0)
+    Enemy('Human', Enemy.dice(3, 6), Enemy.dice(3, 6), Enemy.dice(2, 6) + 6, Enemy.dice(3, 6), Enemy.dice(3, 6), Enemy.dice(3, 6), Enemy.dice(3, 6), Enemy.dice(3, 6), 0),
+    Enemy('Sorcerer', Enemy.dice(3, 4), Enemy.dice(3, 6), Enemy.dice(2, 6) + 6, Enemy.dice(3, 6), Enemy.dice(3, 6), Enemy.dice(2, 6) + 6, Enemy.dice(2, 6) + 6, Enemy.dice(2, 6) + 9, 0),
+    Enemy('Zonbie', Enemy.dice(2, 6) + 6, Enemy.dice(2, 6) + 6, Enemy.dice(2, 6) + 6, Enemy.dice(2, 6), 1, 1, 1, 1, 0)
 ]
